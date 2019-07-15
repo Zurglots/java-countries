@@ -16,6 +16,8 @@ public class CountryController // defines which endpoints handle specific action
                 produces = {"application/json"})
     public ResponseEntity<?> getAllCountries()
     {
+
+        JavacountriesApplication.ourCountryList.countryList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
         return new ResponseEntity<>(JavacountriesApplication.ourCountryList.countryList, HttpStatus.OK);
     }
 
