@@ -215,7 +215,7 @@ public class CountryList
 
     public Country findCountry(CheckCountry tester)
     {
-        for (Country c: countryList)
+        for (Country c : countryList)
         {
             if (tester.test(c))
             {
