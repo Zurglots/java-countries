@@ -30,21 +30,17 @@ public class PopulationController
             produces = {"application/json"})
     public ResponseEntity<?> populationMin()
     {
-//        int maxPop = 0;
-//        int pop =
-        ourCountryList.countryList.sort((c1, c2) -> Math.min(c1.getPopulation(), c2.getPopulation()));
-        return new ResponseEntity<>(ourCountryList.countryList, HttpStatus.OK);
+
+        JavacountriesApplication.ourCountryList.countryList.sort((c1, c2) -> c1.getPopulation() - c2.getPopulation());
+        return new ResponseEntity<>(ourCountryList.countryList.get(0), HttpStatus.OK);
     }
+    
 
-
-    // localhost:8080/population
     @GetMapping(value = "/max",
                 produces = {"application/json"})
     public ResponseEntity<?> populationMax()
     {
-//        int maxPop = 0;
-//        int pop =
-        ourCountryList.countryList.sort((c1, c2) -> Math.max(c1.getPopulation(), c2.getPopulation()));
-        return new ResponseEntity<>(ourCountryList.countryList, HttpStatus.OK);
+        JavacountriesApplication.ourCountryList.countryList.sort((c1, c2) -> c2.getPopulation() - c1.getPopulation());
+        return new ResponseEntity<>(ourCountryList.countryList.get(0), HttpStatus.OK);
     }
 }
