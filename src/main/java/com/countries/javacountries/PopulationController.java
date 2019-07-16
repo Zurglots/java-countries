@@ -34,7 +34,7 @@ public class PopulationController
         JavacountriesApplication.ourCountryList.countryList.sort((c1, c2) -> c1.getPopulation() - c2.getPopulation());
         return new ResponseEntity<>(ourCountryList.countryList.get(0), HttpStatus.OK);
     }
-    
+
 
     @GetMapping(value = "/max",
                 produces = {"application/json"})
