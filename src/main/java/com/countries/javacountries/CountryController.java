@@ -29,9 +29,19 @@ public class CountryController // defines which endpoints handle specific action
 
     public ResponseEntity<?> getLetterCountry(@PathVariable char letter)
     {
-
         ArrayList<Country> getFirst = JavacountriesApplication.ourCountryList.findCountries(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
+        getFirst.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
         return new ResponseEntity<>(getFirst, HttpStatus.OK);
+    }
+
+    @GetMapping(value ="/size/{length}",
+            produces = {"application/json"})
+
+    public ResponseEntity<?> getCountryCharLength(@PathVariable int length)
+    {
+        ArrayList<Country> getLength = JavacountriesApplication.ourCountryList.findCountries(c -> c.getName().length() >= length);
+        getLength.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+        return new ResponseEntity<>(getLength, HttpStatus.OK);
     }
 }
 
